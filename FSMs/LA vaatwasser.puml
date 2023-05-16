@@ -1,0 +1,54 @@
+@startuml LA vaatwasser
+
+title Layered Architecture Dishwasher
+package "User Interface Layer"      #LightGray { 
+    [Development\nConsole]          #green 
+    [Keyboard / Buttons]            #BlueViolet
+}
+
+package "System COntrol Layer"      #LightGray {
+    [FSM]                           #OrangeRed
+}
+
+package "Subsystems Layer"           #LightGray {
+    [WATERPUMP_DRIVER]
+    [VALVE_DRIVER]
+    [SENSOR_DRIVER]
+}
+
+package "Hardware Abstraction Layer" #LightGray {
+    [WATERPUMP]                      #Grey
+    [VALVE]                          #Grey
+    [POWDER_LEVEL_SENSOR]            #Grey
+}
+
+[Keyboard / Buttons]   --> [Development\nConsole]
+[Keyboard / Buttons]   --> [FSM]
+[Development\nConsole] --> [Keyboard / Buttons]
+[FSM] -up-> [Development\nConsole]
+
+[FSM] -down-> [WATERPUMP_DRIVER]
+[FSM] -down-> [VALVE_DRIVER]
+[FSM] -down-> [SENSOR_DRIVER]
+
+[WATERPUMP_DRIVER]    -down-> [WATERPUMP]
+[VALVE_DRIVER]        -down-> [VALVE]
+[SENSOR_DRIVER]       -down-> [POWDER_LEVEL_SENSOR]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml

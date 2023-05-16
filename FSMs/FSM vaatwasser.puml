@@ -1,0 +1,90 @@
+@startuml Dishwasser
+
+title Dishwasher (FSM)
+
+[*] --> initialiseSubSystems : E_START
+initialiseSubSystems : initialiseSubSystems()
+initialiseSubSystems : selectedTime = 0
+initialiseSubSystems : selectedProgram = 0
+initialiseSubSystems : powderLvl = 100
+initialiseSubSystems : powderErr = 0 
+initialiseSubSystems ---> waitForProgram : E_CONTINUE [no init error(s)]
+initialiseSubSystems ---> [*] : E_CONTINUE [init error(s)] / \n     shutdownSubSystems()
+waitForProgram : program = 0
+
+
+
+waitForProgram --> process_glass : E_GLASS
+process_glass : insertedProgram = 1
+
+waitForProgram --> process_ceramic : E_CERAM
+process_ceramic : insertedProgram = 2
+
+waitForProgram --> process_eco : E_ECO
+process_eco : insertedProgram = 3
+
+
+
+process_glass --> insertedTime : E_60
+process_glass --> insertedTime : E_10
+process_glass --> insertedTime : E_5
+
+process_ceramic --> insertedTime : E_60
+process_ceramic --> insertedTime : E_10
+process_ceramic --> insertedTime : E_5
+
+process_eco --> insertedTime : E_60
+process_eco --> insertedTime : E_10
+process_eco --> insertedTime : E_5
+
+insertedTime : time += 60
+insertedTime : time += 10
+insertedTime : time += 5
+
+startProgram --> insertedTime : E_ADD_TIME
+
+insertedTime --> startProgram : E_START_PROG
+startProgram : powderLvl -= 10
+
+startProgram : powderErr = 1 
+startProgram --> [*] : E_RESTART_PROGRAM [empty]
+
+
+
+process_glass --> restartProgram : E_RESTART_PROGRAM
+process_ceramic --> restartProgram : E_RESTART_PROGRAM
+process_eco --> restartProgram : E_RESTART_PROGRAM
+startProgram --> restartProgram : E_RESTART_PROGRAM [not empty]
+
+
+
+restartProgram --> waitForProgram : E_RETURN
+restartProgram : time = 0
+
+note right of waitForProgram
+    Set program to 0 when E_RETURN
+    is TRUE. Wait until the user
+    has selected a program
+end note
+
+note right of initialiseSubSystems
+    Initialize all systems,
+    set all variables to zero 
+end note
+
+note left of restartProgram 
+    When the exit button
+    is pressed by the user,
+    keep waiting for program
+end note
+
+note right of insertedTime
+    Add 60, 10 or 5 minutes
+    to program time
+end note
+
+note right of startProgram 
+    If powderlevel = 0
+    set powderErr = 1
+end note
+@enduml
