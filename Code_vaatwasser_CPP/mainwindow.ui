@@ -7,8 +7,52 @@
     <x>0</x>
     <y>0</y>
     <width>548</width>
-    <height>251</height>
+    <height>242</height>
    </rect>
+  </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>167</red>
+        <green>167</green>
+        <blue>167</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>240</red>
+        <green>240</green>
+        <blue>240</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>167</red>
+        <green>167</green>
+        <blue>167</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
+  </property>
+  <property name="font">
+   <font>
+    <italic>false</italic>
+    <bold>false</bold>
+    <kerning>true</kerning>
+   </font>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -17,7 +61,7 @@
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="minutes60">
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -33,7 +77,7 @@
      <string>60 minutes</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="minutes10">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -49,7 +93,7 @@
      <string>10 minutes</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_7">
+   <widget class="QPushButton" name="minutes5">
     <property name="geometry">
      <rect>
       <x>450</x>
@@ -68,7 +112,7 @@
    <widget class="QProgressBar" name="PowderLvl">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>10</x>
       <y>130</y>
       <width>118</width>
       <height>23</height>
@@ -90,17 +134,17 @@
    <widget class="QDial" name="ProgramDial">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>340</x>
       <y>20</y>
-      <width>111</width>
-      <height>121</height>
+      <width>131</width>
+      <height>131</height>
      </rect>
     </property>
     <property name="toolTip">
      <string>Program selection dial</string>
     </property>
    </widget>
-   <widget class="QDialogButtonBox" name="buttonBox">
+   <widget class="QDialogButtonBox" name="ok_cancel">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -116,8 +160,8 @@
    <widget class="QLabel" name="PowderLbl">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>210</y>
+      <x>200</x>
+      <y>130</y>
       <width>63</width>
       <height>20</height>
      </rect>
@@ -126,7 +170,7 @@
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser">
+   <widget class="QTextBrowser" name="Textfield">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -136,13 +180,13 @@
      </rect>
     </property>
    </widget>
-   <zorder>pushButton_5</zorder>
-   <zorder>pushButton_6</zorder>
-   <zorder>pushButton_7</zorder>
+   <zorder>minutes60</zorder>
+   <zorder>minutes10</zorder>
+   <zorder>minutes5</zorder>
    <zorder>ProgramDial</zorder>
-   <zorder>buttonBox</zorder>
+   <zorder>ok_cancel</zorder>
    <zorder>PowderLbl</zorder>
-   <zorder>textBrowser</zorder>
+   <zorder>Textfield</zorder>
    <zorder>PowderLvl</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -151,17 +195,17 @@
      <x>0</x>
      <y>0</y>
      <width>548</width>
-     <height>25</height>
+     <height>17</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuVaatwasser">
     <property name="title">
      <string>Vaatwasser</string>
     </property>
+    <addaction name="separator"/>
    </widget>
    <addaction name="menuVaatwasser"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
