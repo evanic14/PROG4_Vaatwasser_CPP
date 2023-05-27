@@ -1,8 +1,6 @@
 #ifndef APPINFO_H
 #define APPINFO_H
 
-// FSM Library adapted from Hugo Arends
-
 #define APP "Software visualisation of a dishwasher,"
 #define VERSION "1.1"
 
