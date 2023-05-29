@@ -1,9 +1,22 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+/// Standard CPP includes
+//#include <string>
+//#include <iostream>
+//#include <fstream>
+#include <fstream>
+#include <iostream>
+#include <string>
+
+/// QT CPP includes
+#include <QState>
+#include <QDateTime>
+#include <QDebug>
+#include <QCoreApplication>
+#include <QThread>
 #include <QMainWindow>
 #include <QStateMachine>
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -53,17 +66,14 @@ private:
     Ui::MainWindow *ui;
     QStateMachine statemachine;
 
-    // Global variables
-    QString selectionvalue;
-    QString glassProg;
+    /// Global variables
+    std::string filename{"log.txt"};
+    std::fstream s;
     QString selectedProgram = "none";      /// String for displaying the program name
     int     selectedTime    = 0;           /// Indicates the current selected time
-    int     powder          = 100;         /// Indicates the level of laundry detergent
+    int     powder          = 10;         /// Indicates the level of laundry detergent
     int     powderLvl       = 0;           /// Actual laundry detergent level
     int     exitCode        = 0;           /// Signal for a graceful shutdown
-    int     matchGlass      = 0;           /// Low level signal used for returning to S_WaitForProgram
-    int     matchEco        = 0;           /// Low level signal used for returning to S_WaitForProgram
-    int     matchCeramic    = 0;           /// Low level signal used for returning to S_WaitForProgram
     bool    powderErr       = false;       /// Get set to true when powderLvl is 0
     bool    shutdown        = false;       /// Signal for triggering a system shutdown
 
@@ -78,10 +88,12 @@ private:
     QState *S_RESTART_PROGRAM      = new QState();
 
     /// Helper functions
-    void timeDisplay    (void);                                        /// Function for displaying the time selection menu
-    void setDisplay     (QString text, bool setDate);                  /// Function for posting text to the display. QString text = input text, bool setDate = enabeles the date display
-    void timeDelay      (int time);                                    /// Delays the program in milliseconds determined by int time
-    void debug          (QString text, QString text2, bool setDate);   /// This function posts text to the debug window. QString text = input text, QString text2 = second input text, bool setDate = enables the date display
+    void timeDisplay    (void);                                                      /// Function for displaying the time selection menu
+    void setDisplay     (QString text, bool setDate);                                /// Function for posting text to the display. QString text = input text, bool setDate = enabeles the date display
+    void timeDelay      (int time);                                                  /// Delays the program in milliseconds determined by int time
+    void debug          (QString text, QString text2, bool setDate, bool setSave);   /// This function posts text to the debug window.
+                                                                                     /// QString text = input text, QString text2 = second input text,
+                                                                                     /// bool setDate = enables the date display, bool setSave = saves debug info to a file
 };
 
 #endif // MAINWINDOW_H

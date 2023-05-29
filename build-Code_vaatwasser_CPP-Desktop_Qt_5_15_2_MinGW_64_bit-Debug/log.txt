@@ -1,0 +1,45 @@
+
+
+
+
+
+
+
+
+
+ 
+2023-05-29 09:20:07:         MainWindow started 
+2023-05-29 09:20:07:         Statemachine started 
+  
+2023-05-29 09:20:07:         Entered S_InitialiseSubsystems_onEntry 
+2023-05-29 09:20:07:         App name: Software visualisation of a dishwasher 
+2023-05-29 09:20:07:         App name: 0.2.0 
+2023-05-29 09:20:07:         Program started 
+2023-05-29 09:20:07:         Selected time = 0 
+2023-05-29 09:20:07:         Selected program = none 
+2023-05-29 09:20:07:         Powder level = 10 
+2023-05-29 09:20:07:         Powder error = 0 
+2023-05-29 09:20:07:         Waiting for: 2000ms 
+  
+2023-05-29 09:20:09:         Entered S_WaitForProgram_onEntry 
+2023-05-29 09:20:12:         Entered S_WaitForProgram_onExit 
+  
+2023-05-29 09:20:12:         Entered S_SelectProgram_onEntry 
+2023-05-29 09:20:12:         Selected program: Glass 
+2023-05-29 09:20:12:         Entered S_SelectProgram_onExit 
+  
+2023-05-29 09:20:12:         Entered S_Process_Glass_onEntry 
+2023-05-29 09:20:12:         Selected program: Glass 
+2023-05-29 09:20:12:         0 
+2023-05-29 09:20:14:         Button 5 clicked: 5 
+2023-05-29 09:20:15:         Entered S_Process_Glass_onExit 
+  
+2023-05-29 09:20:15:         Entered S_StartProgram_onEntry 
+2023-05-29 09:20:15:         Selected program: Glass 
+2023-05-29 09:20:15:         Selected time: 5 
+2023-05-29 09:20:15:         Powder level: 10 
+2023-05-29 09:20:15:         Powder error 
+2023-05-29 09:20:15:         Closing program... 
+2023-05-29 09:20:15:         Entered S_StartProgram_onExit 
+2023-05-29 09:20:15:         Waiting for: 2000ms 
+2023-05-29 09:20:17:         System shuttingdown. Error code: 1 

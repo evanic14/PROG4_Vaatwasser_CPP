@@ -58,14 +58,13 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(538, 238);
+        MainWindow->resize(530, 222);
         QPalette palette;
-        QBrush brush(QColor(167, 167, 167, 255));
+        QBrush brush(QColor(255, 255, 255, 255));
         brush.setStyle(Qt::SolidPattern);
         palette.setBrush(QPalette::Active, QPalette::Window, brush);
-        QBrush brush1(QColor(240, 240, 240, 255));
-        brush1.setStyle(Qt::SolidPattern);
-        palette.setBrush(QPalette::Inactive, QPalette::Window, brush1);
+        palette.setBrush(QPalette::Inactive, QPalette::Window, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::Base, brush);
         palette.setBrush(QPalette::Disabled, QPalette::Window, brush);
         MainWindow->setPalette(palette);
         QFont font;
@@ -74,20 +73,31 @@ public:
         font.setKerning(true);
         MainWindow->setFont(font);
         MainWindow->setAutoFillBackground(false);
+        MainWindow->setAnimated(false);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         lblPowderLvl = new QProgressBar(centralwidget);
         lblPowderLvl->setObjectName(QString::fromUtf8("lblPowderLvl"));
-        lblPowderLvl->setGeometry(QRect(380, 10, 118, 23));
+        lblPowderLvl->setGeometry(QRect(450, 0, 71, 131));
+        QSizePolicy sizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(lblPowderLvl->sizePolicy().hasHeightForWidth());
+        lblPowderLvl->setSizePolicy(sizePolicy);
+        lblPowderLvl->setAcceptDrops(false);
         lblPowderLvl->setAutoFillBackground(false);
         lblPowderLvl->setValue(100);
         lblPowderLvl->setTextVisible(true);
+        lblPowderLvl->setOrientation(Qt::Vertical);
+        lblPowderLvl->setInvertedAppearance(false);
         txtInfo = new QPlainTextEdit(centralwidget);
         txtInfo->setObjectName(QString::fromUtf8("txtInfo"));
-        txtInfo->setGeometry(QRect(10, 10, 341, 141));
+        txtInfo->setEnabled(false);
+        txtInfo->setGeometry(QRect(10, 0, 271, 121));
+        txtInfo->setBackgroundVisible(false);
         gbHidden = new QGroupBox(centralwidget);
         gbHidden->setObjectName(QString::fromUtf8("gbHidden"));
-        gbHidden->setGeometry(QRect(100, 30, 98, 95));
+        gbHidden->setGeometry(QRect(80, 10, 131, 101));
         verticalLayout_2 = new QVBoxLayout(gbHidden);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         btnStateSwGlass = new QPushButton(gbHidden);
@@ -107,7 +117,7 @@ public:
 
         gbTime = new QGroupBox(centralwidget);
         gbTime->setObjectName(QString::fromUtf8("gbTime"));
-        gbTime->setGeometry(QRect(260, 160, 261, 51));
+        gbTime->setGeometry(QRect(210, 130, 321, 61));
         horizontalLayout_2 = new QHBoxLayout(gbTime);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         txtTime = new QLCDNumber(gbTime);
@@ -132,7 +142,7 @@ public:
 
         gbSelCtrl = new QGroupBox(centralwidget);
         gbSelCtrl->setObjectName(QString::fromUtf8("gbSelCtrl"));
-        gbSelCtrl->setGeometry(QRect(10, 160, 182, 51));
+        gbSelCtrl->setGeometry(QRect(10, 130, 191, 61));
         horizontalLayout = new QHBoxLayout(gbSelCtrl);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         btnOkProg = new QPushButton(gbSelCtrl);
@@ -147,7 +157,14 @@ public:
 
         gbProgram = new QGroupBox(centralwidget);
         gbProgram->setObjectName(QString::fromUtf8("gbProgram"));
-        gbProgram->setGeometry(QRect(370, 50, 131, 61));
+        gbProgram->setGeometry(QRect(290, 0, 151, 71));
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(gbProgram->sizePolicy().hasHeightForWidth());
+        gbProgram->setSizePolicy(sizePolicy1);
+        gbProgram->setContextMenuPolicy(Qt::DefaultContextMenu);
+        gbProgram->setLayoutDirection(Qt::LeftToRight);
         verticalLayout = new QVBoxLayout(gbProgram);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         cmbProgramSel = new QComboBox(gbProgram);
@@ -168,7 +185,7 @@ public:
         gbProgram->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 538, 17));
+        menubar->setGeometry(QRect(0, 0, 530, 25));
         menuVaatwasser = new QMenu(menubar);
         menuVaatwasser->setObjectName(QString::fromUtf8("menuVaatwasser"));
         MainWindow->setMenuBar(menubar);
@@ -205,7 +222,7 @@ public:
 #endif // QT_CONFIG(tooltip)
         btnMinutes5->setText(QCoreApplication::translate("MainWindow", "5 minutes", nullptr));
         gbSelCtrl->setTitle(QCoreApplication::translate("MainWindow", "Selection controls", nullptr));
-        btnOkProg->setText(QCoreApplication::translate("MainWindow", "OK", nullptr));
+        btnOkProg->setText(QCoreApplication::translate("MainWindow", "Ok", nullptr));
         btnReturnProg->setText(QCoreApplication::translate("MainWindow", "Return", nullptr));
         gbProgram->setTitle(QCoreApplication::translate("MainWindow", "Program", nullptr));
         cmbProgramSel->setItemText(0, QCoreApplication::translate("MainWindow", "Select program", nullptr));
