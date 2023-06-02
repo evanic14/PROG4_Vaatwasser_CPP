@@ -15,11 +15,10 @@ MainWindow::MainWindow(QWidget *parent)
     /// Add states to statemachine
     statemachine.addState(S_INITIALISESUBSYSTEMS);
     statemachine.addState(S_WAIT_FOR_PROGRAM);
-    statemachine.addState(S_SELECT_PROGRAM); // add to fsm
+    statemachine.addState(S_SELECT_PROGRAM);
     statemachine.addState(S_PROCESS_GLASS);
     statemachine.addState(S_PROCESS_CERAMIC);
     statemachine.addState(S_PROCESS_ECO);
-    //statemachine.addState(S_INSERTED_TIME); // remove from fsm
     statemachine.addState(S_START_PROGRAM);
     statemachine.addState(S_RESTART_PROGRAM);
 
@@ -36,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(S_INITIALISESUBSYSTEMS, &QState::exited,  this, &MainWindow::S_InitialiseSubsystems_onExit);
     connect(S_WAIT_FOR_PROGRAM,     &QState::entered, this, &MainWindow::S_WaitForProgram_onEntry);
     connect(S_WAIT_FOR_PROGRAM,     &QState::exited,  this, &MainWindow::S_WaitForProgram_onExit);
-    connect(S_SELECT_PROGRAM,       &QState::entered, this, &MainWindow::S_SelectProgram_onEntry); // add to fsm
+    connect(S_SELECT_PROGRAM,       &QState::entered, this, &MainWindow::S_SelectProgram_onEntry);
     connect(S_SELECT_PROGRAM,       &QState::exited,  this, &MainWindow::S_SelectProgram_onExit);
     connect(S_PROCESS_GLASS,        &QState::entered, this, &MainWindow::S_Process_Glass_onEntry);
     connect(S_PROCESS_GLASS,        &QState::exited,  this, &MainWindow::S_Process_Glass_onExit);
@@ -44,8 +43,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(S_PROCESS_CERAMIC,      &QState::exited,  this, &MainWindow::S_Process_Ceramic_onExit);
     connect(S_PROCESS_ECO,          &QState::entered, this, &MainWindow::S_Process_Eco_onEntry);
     connect(S_PROCESS_ECO,          &QState::exited,  this, &MainWindow::S_Process_Eco_onExit);
-    //connect(S_INSERTED_TIME,        &QState::entered, this, &MainWindow::S_InsertedTime_onEntry); // remove from fsm
-    //connect(S_INSERTED_TIME,        &QState::exited,  this, &MainWindow::S_InsertedTime_onExit);
     connect(S_START_PROGRAM,        &QState::entered, this, &MainWindow::S_StartProgram_onEntry);
     connect(S_START_PROGRAM,        &QState::exited,  this, &MainWindow::S_StartProgram_onExit);
     connect(S_RESTART_PROGRAM,      &QState::entered, this, &MainWindow::S_RestartProgram_onEntry);
@@ -55,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent)
     /// Set transitions
     S_INITIALISESUBSYSTEMS->addTransition(ui->btnOkProg,           &QPushButton::clicked,  S_WAIT_FOR_PROGRAM);
 
-    S_WAIT_FOR_PROGRAM    ->addTransition(ui->btnOkProg,           &QPushButton::clicked,  S_SELECT_PROGRAM); // add to fsm
+    S_WAIT_FOR_PROGRAM    ->addTransition(ui->btnOkProg,           &QPushButton::clicked,  S_SELECT_PROGRAM);
 
     S_SELECT_PROGRAM      ->addTransition(ui->btnStateSwGlass,     &QPushButton::clicked , S_PROCESS_GLASS);
     S_SELECT_PROGRAM      ->addTransition(ui->btnStateSwEco,       &QPushButton::clicked,  S_PROCESS_ECO);
@@ -178,6 +175,7 @@ void MainWindow::S_WaitForProgram_onEntry(void)
     ui->btnReturnProg->setVisible(false);
     ui->btnOkProg->setVisible(true);
     ui->gbProgram->setVisible(true);
+    ui->gbSelCtrl->setVisible(true);
 
     /// Show instructions on display
     debug("-----------------------------", "", false, false);

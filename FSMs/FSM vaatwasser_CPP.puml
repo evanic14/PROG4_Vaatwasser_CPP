@@ -1,0 +1,65 @@
+@startuml Dishwasser
+
+title Dishwasher (FSM)
+
+[*] --> initialiseSubSystems : btnOkProg
+initialiseSubSystems : appName
+initialiseSubSystems : appVersion
+initialiseSubSystems : selectedTime = 0
+initialiseSubSystems : selectedProgram = 0
+initialiseSubSystems : powderLvl = 100
+initialiseSubSystems : powderErr = 0 
+
+
+initialiseSubSystems ---> waitForProgram : btnOkProg
+waitForProgram : program = 0
+
+
+waitForProgram --> selectProgram : btnOkProg
+selectProgram --> waitForProgram : btnReturnProg
+selectProgram : Select program
+selectProgram : Glass
+selectProgram : Eco 
+selectProgram : Ceramic
+selectProgram : insertedProgram = *selected program* 
+
+
+selectProgram --> process_glass : btnStateSwGlass
+process_glass --> waitForProgram : btnReturnProg
+process_glass --> startProgram : btnOkProg
+process_glass : timeDisplay();
+
+
+selectProgram --> process_eco : btnStateSwEco
+process_eco --> waitForProgram : btnReturnProg
+process_eco --> startProgram : btnOkProg
+process_eco : timeDisplay();
+
+
+selectProgram --> process_ceramic : btnStateSwCeramic
+process_ceramic --> waitForProgram : btnReturnProg
+process_ceramic --> startProgram : btnOkProg
+process_ceramic : timeDisplay();
+
+
+startProgram --> restartProgram : btnOkProg
+startProgram --> [*] : powderErr
+startProgram : powderLvl -= 10
+startProgram : powderErr = 1 
+
+restartProgram --> waitForProgram : btnOkProg
+restartProgram : timeDelay(selectedTime * 100); 
+restartProgram : selectedProgram = "none"
+restartProgram : selectedTime = 0
+
+
+note right of initialiseSubSystems
+    Initialize all systems,
+    set all variables to zero 
+end note
+
+note right of startProgram 
+    If powderlevel = 0
+    set powderErr = 1
+end note
+@enduml

@@ -45,9 +45,6 @@ public:
     void S_Process_Eco_onEntry         (void);
     void S_Process_Eco_onExit          (void);
 
-    //void S_InsertedTime_onEntry(void); // remove from fsm
-    //void S_InsertedTime_onExit(void);
-
     void S_StartProgram_onEntry        (void);
     void S_StartProgram_onExit         (void);
     void S_RestartProgram_onEntry      (void);
@@ -71,7 +68,7 @@ private:
     std::fstream s;
     QString selectedProgram = "none";      /// String for displaying the program name
     int     selectedTime    = 0;           /// Indicates the current selected time
-    int     powder          = 10;         /// Indicates the level of laundry detergent
+    int     powder          = 100;         /// Indicates the level of laundry detergent
     int     powderLvl       = 0;           /// Actual laundry detergent level
     int     exitCode        = 0;           /// Signal for a graceful shutdown
     bool    powderErr       = false;       /// Get set to true when powderLvl is 0
